@@ -165,7 +165,7 @@ a:hover {
 /* Hero Section */
 .hero-section {
   background-color: var(--color-primary);
-  padding: 80px 20px;
+  padding: 80px 0; /* Removed horizontal padding to let .container handle it */
   text-align: center;
   margin-bottom: 40px;
 }
@@ -273,6 +273,10 @@ a:hover {
 }
 
 @media (max-width: 480px) {
+  .search-container {
+    max-width: 100%;
+  }
+
   .search-input-wrapper {
     flex-direction: column;
     gap: 12px;
@@ -286,6 +290,8 @@ a:hover {
     border-radius: 6px;
     padding: 14px;
     width: 100%;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
