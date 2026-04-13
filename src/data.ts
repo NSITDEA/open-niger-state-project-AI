@@ -191,16 +191,17 @@ export type Tier4Article = {
         "small-claims-new": {
           title: "Small Claims - File a new claim",
           children: {
-            "disputes": {
-              title: "Tenant disputes / Property damage / Debt recovery / Breach of contract / Consumer protection",
-              type: "content",
-            },
+            "tenant-disputes": { title: "Tenant disputes", type: "content" },
+            "property-damage": { title: "Property damage", type: "content" },
+            "debt-recovery": { title: "Debt recovery", type: "content" },
+            "breach-contract": { title: "Breach of contract", type: "content" },
+            "consumer-protection": { title: "Consumer protection", type: "content" },
           },
         },
         "small-claims-resources": {
           title: "Small Claims - Resources",
           children: {
-            "nearest-court": { title: "Find your nearest Small Claims court", type: "content" },
+            "nearest-court": { title: "Find your nearest Small Claims court (map)", type: "content" },
             "legal-guides": { title: "Legal guides", type: "content" },
           },
         },
