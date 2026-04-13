@@ -1,6 +1,6 @@
 import { useSearchParams, Link } from 'react-router-dom';
 import { iaData } from '../data';
-import { Search } from 'lucide-react';
+
 import { useState, useEffect } from 'react';
 
 interface ResultItem {
