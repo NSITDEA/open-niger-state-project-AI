@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { AlertCircle } from 'lucide-react';
 import { iaData } from '../data';
+import logo from '../assets/logo.png';
 
 export default function Layout() {
   const location = useLocation();
@@ -57,7 +58,7 @@ export default function Layout() {
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className="logo">
             <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="/src/assets/logo.png" alt="Open Niger State Logo" className="logo-img" />
+              <img src={logo} alt="Open Niger State Logo" className="logo-img" />
             </Link>
           </div>
           <nav className="main-nav">
@@ -80,7 +81,7 @@ export default function Layout() {
         <div className="container footer-content">
           <div className="footer-logo">
             <Link to="/">
-              <img src="/src/assets/logo.png" alt="Open Niger State Logo" className="logo-img footer-logo-img" />
+              <img src={logo} alt="Open Niger State Logo" className="logo-img footer-logo-img" />
             </Link>
           </div>
           
