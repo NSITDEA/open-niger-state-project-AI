@@ -286,12 +286,14 @@ a:hover {
     border-radius: 6px;
   }
 
-  .hero-search-btn {
+  .hero-search-btn,
+  .hero-search-btn.visible {
     border-radius: 6px;
     padding: 14px;
     width: 100%;
     opacity: 1;
     pointer-events: auto;
+    transform: none;
   }
 }
 
