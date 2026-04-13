@@ -30,11 +30,13 @@ export default function Home() {
                 onFocus={() => setIsFocused(true)}
                 onBlur={() => setTimeout(() => setIsFocused(false), 200)}
               />
-              {(isFocused || query) && (
-                <button type="submit" className="hero-search-btn">
-                  Search
-                </button>
-              )}
+              <button 
+                type="submit" 
+                className={`hero-search-btn ${(isFocused || query) ? 'visible' : ''}`}
+                onMouseDown={(e) => e.preventDefault()}
+              >
+                Search
+              </button>
             </form>
 
             <div className="search-suggestions">
