@@ -1,10 +1,40 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, Menu, X, ArrowUp } from 'lucide-react';
 import { iaData } from '../data';
 import logo from '../assets/logo.png';
+import { useState, useEffect } from 'react';
 
 export default function Layout() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const location = useLocation();
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsMenuOpen(false);
+    window.scrollTo(0, 0); // Ensure page starts at top on route change
+  }, [location.pathname]);
+
+  // Handle scroll to show/hide 'Scroll to Top' button
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 400) {
+        setShowScrollTop(true);
+      } else {
+        setShowScrollTop(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
   const renderBreadcrumbs = () => {
@@ -61,9 +91,18 @@ export default function Layout() {
               <img src={logo} alt="Open Niger State Logo" className="logo-img" />
             </Link>
           </div>
-          <nav className="main-nav">
+
+          <button 
+            className="menu-toggle" 
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+
+          <nav className={`main-nav ${isMenuOpen ? 'open' : ''}`}>
             <Link to="/">Services</Link>
-            <a href="#contact">Contact</a>
+            <Link to="/about">About Us</Link>
           </nav>
         </div>
       </header>
@@ -90,14 +129,9 @@ export default function Layout() {
           </p>
 
           <div className="footer-links">
-            <div className="link-col">
-              <Link to="/">Home</Link>
-              <a href="#">Suggestions</a>
-            </div>
-            <div className="link-col">
-              <Link to="/">Our Services</Link>
-              <a href="#contact" className="text-yellow">Contact Us</a>
-            </div>
+            <Link to="/">Home</Link>
+            <Link to="/">Our Services</Link>
+            <Link to="/about">About Us</Link>
           </div>
 
           <div className="social-icons">
@@ -117,6 +151,13 @@ export default function Layout() {
           </div>
         </div>
       </footer>
+      <button 
+        className={`scroll-to-top ${showScrollTop ? 'visible' : ''}`}
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+      >
+        <ArrowUp size={24} />
+      </button>
     </>
   );
 }

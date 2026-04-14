@@ -4,6 +4,7 @@ import Home from './components/Home';
 import Category from './components/Category';
 import Article from './components/Article';
 import SearchResults from './components/SearchResults';
+import About from './components/About';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="search" element={<SearchResults />} />
+        <Route path="about" element={<About />} />
         <Route path=":catKey" element={<Category />} />
         <Route path=":catKey/:subKey" element={<Category />} />
         <Route path=":catKey/:subKey/:articleKey" element={<Article />} />

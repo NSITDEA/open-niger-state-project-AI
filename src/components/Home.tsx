@@ -18,7 +18,7 @@ export default function Home() {
     <>
       <div className="hero-section">
         <div className="container">
-          <h1 className="hero-title">Access ALL government services in one place</h1>
+          <h1 className="hero-title">Access government services in one place</h1>
           <div className="search-container">
             <form onSubmit={handleSearch} className="search-input-wrapper">
               <input
@@ -57,7 +57,7 @@ export default function Home() {
       
       <div className="container">
         <div className="page-header">
-          <h2 className="page-title">Welcome to Open Niger State</h2>
+          {/* <h2 className="page-title">Welcome to Open Niger State</h2> */}
           <p className="page-description">An information platform designed to help business owners and entrepreneurs in Niger State access government services and resources.</p>
         </div>
         <div className="tier-list">
