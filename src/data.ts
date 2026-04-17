@@ -57,8 +57,8 @@ export const iaData: IAData = {
               "Get a digital certificate sent to your email",
               "Open a business bank account with your number",
               "Access government loans and funding programs",
-              "Win contracts — clients trust registered businesses",
-              "Protect your name — no one else can use it"
+              "Win contracts clients trust registered businesses",
+              "Protect your name no one else can use it"
             ],
             requirements: [
               "Your NIN, driver's licence, voter's card, or passport",
@@ -79,7 +79,7 @@ export const iaData: IAData = {
               { question: "Do I need to go to a CAC office?", answer: "No — the whole process is 100% online." },
               { question: "How much does it cost in total?", answer: "Expect to pay around ₦11,000–₦20,000 in total." },
               { question: "How long does it take?", answer: "Your certificate is usually ready within 24 to 72 hours." },
-              { question: "Can I register a partnership business?", answer: "Yes — this covers sole owners and partnerships too." }
+              { question: "Can I register a partnership business?", answer: "Ye this covers sole owners and partnerships too." }
             ],
             cta: {
               text: "Start your registration →",
@@ -139,8 +139,121 @@ export const iaData: IAData = {
                 note: "You'll be taken to https://smedan.gov.ng/ — SMEDAN's official portal"
               }
             },
-            "cooperative": { title: "Register a cooperative (Ministry of Commerce)", type: "content" },
-            "bank-account": { title: "Open a business bank account", type: "content" },
+            "cooperative": { 
+              title: "Register a cooperative (Ministry of Commerce)", 
+              type: "service",
+              readTime: "5 min read",
+              views: "850 views",
+              about: "A cooperative is when people come together to help each other grow their businesses or save money together. You register with the Niger State Ministry of Commerce and Industry. This gives you legal protection and helps you get loans.",
+              benefits: [
+                "Get legal protection across Niger State",
+                "Access government loans and grants more easily",
+                "Open a bank account in your group name",
+                "Get help with business registration at one stop shops",
+                "Join tax simplification programs",
+                "Get support from SEDIN business programs",
+                "Access mediation services for business disputes",
+                "Protect members from losing personal property"
+              ],
+              requirements: [
+                "Three proposed names for your cooperative",
+                "Constitution and bylaws of your cooperative",
+                "List of all members with their signatures",
+                "Valid ID for all trustees and board members",
+                "Minutes of your first general meeting",
+                "Letter explaining your cooperative's goals",
+                "Proof of your cooperative's address in Niger State",
+                "Feasibility study or business plan",
+                "Resolution signed by all founding members",
+                "Official stamp with your cooperative name and logo",
+                "Member requirement: Agricultural cooperative - Minimum 50 members",
+                "Member requirement: Savings and credit cooperative - Minimum 20 members",
+                "Member requirement: Multi-purpose cooperative - Minimum 10 members",
+                "Member requirement: All members must be at least 15 years old",
+                "Member requirement: Board members must be at least 18 years old"
+              ],
+              steps: [
+                { title: "Form your cooperative group", description: "Get your minimum members together and hold the first meeting." },
+                { title: "Draft your constitution", description: "Write rules for membership, fees, meetings, and money management." },
+                { title: "Visit the One Stop Shop", description: "Go to Niger State One Stop Investment Center in Minna." },
+                { title: "Check if your name is available", description: "Submit three name options to the Ministry of Commerce." },
+                { title: "Get your official stamp made", description: "Create a stamp with your cooperative name and logo." },
+                { title: "Submit all your documents", description: "Take everything to the Ministry of Commerce and Industry." },
+                { title: "Pay your registration fees", description: "Fees are set by Niger State Tax Administration Act." },
+                { title: "Get your recognition letter", description: "You receive approval to operate for 3 years first." },
+                { title: "Run your cooperative for 3 years", description: "Follow all rules and keep proper records and accounts." },
+                { title: "Get your final certificate", description: "After 3 years, collect your permanent registration certificate." }
+              ],
+              faq: [
+                { question: "Where do I register in Niger State?", answer: "Visit the Ministry of Commerce and Industry in Minna." },
+                { question: "Can I use the One Stop Shop?", answer: "Yes, Niger State has one stop investment centers for registration." },
+                { question: "How much does registration cost?", answer: "Fees follow the Niger State Tax Administration Act of 2022." },
+                { question: "What happens after 3 years?", answer: "You get your permanent certificate and certified copy of bylaws." },
+                { question: "Can we start operating before full registration?", answer: "Yes, with the recognition letter for the first 3 years." },
+                { question: "Do all members need to be from Niger State?", answer: "No, but your cooperative address must be in Niger State." },
+                { question: "What is the One Stop Investment Center?", answer: "It links all government offices in one place for easier registration." },
+                { question: "Can we access SEDIN programs?", answer: "Yes, registered cooperatives can join SEDIN business support programs." },
+                { question: "Do we get tax benefits?", answer: "Yes, cooperatives qualify for tax simplification programs in Niger State." },
+                { question: "What support does the state give cooperatives?", answer: "You get help with business registration, tax, mediation, and finance access." },
+                { question: "What if our chosen name is taken?", answer: "Submit three name options so you have backup choices." },
+                { question: "Where is the ministry located?", answer: "Visit the Secretariat Complex on Paiko Road in Minna." }
+              ],
+              cta: {
+                text: "Visit the One Stop Shop",
+                link: "/start-business",
+                note: "Visit Niger State One Stop Investment Center in Minna for in-person support."
+              }
+            },
+            "bank-account": { 
+              title: "Open a business bank account", 
+              type: "service",
+              readTime: "5 min read",
+              views: "4.2k views",
+              about: "You can open a bank account for your business at any bank. This keeps your business money separate from your personal money. It helps you manage expenses and get loans easier.",
+              benefits: [
+                "Keep business and personal money separate",
+                "Get access to business loans and credit",
+                "Accept card payments from your customers",
+                "Build credit for your business",
+                "Track expenses more easily",
+                "Look more professional to clients"
+              ],
+              requirements: [
+                "Your CAC certificate or business registration",
+                "Your company documents (Memart)",
+                "Your TIN number",
+                "Board resolution signed by all directors",
+                "Valid ID for all directors and signatories",
+                "BVN for all people who will sign",
+                "Proof of where your business is located",
+                "Two passport photos of each signatory",
+                "SCUML certificate (if your business needs it)",
+                "Two business references"
+              ],
+              steps: [
+                { title: "Pick your bank", description: "Compare banks and choose one that fits your needs." },
+                { title: "Gather your documents", description: "Get all required papers ready before you visit." },
+                { title: "Fill the application form", description: "Complete the form the bank gives you carefully." },
+                { title: "Submit everything", description: "Take all documents to the bank or apply online." },
+                { title: "Make your first deposit", description: "Put money in to activate your new account." },
+                { title: "Get your account details", description: "Receive your account number and debit card if needed." }
+              ],
+              faq: [
+                { question: "Can I open this online?", answer: "Yes, many banks now let you apply fully online." },
+                { question: "How long does it take?", answer: "Most banks approve your account within 1 to 3 days." },
+                { question: "Do I need to register my business first?", answer: "Yes, your business must be registered with CAC first." },
+                { question: "What is a BVN and why do I need it?", answer: "It is your Bank Verification Number that all banks require." },
+                { question: "How much money do I need to open it?", answer: "Usually between ₦5,000 and ₦100,000 depending on the bank." },
+                { question: "Can a foreigner open a business account?", answer: "Yes, but you need a residence permit and work permit." },
+                { question: "What is SCUML?", answer: "It is a registration needed for certain business types." },
+                { question: "Do sole proprietors need a business account?", answer: "Not required, but highly recommended for better money management." }
+              ],
+              cta: {
+                text: "Find a bank near you",
+                link: "https://www.google.com/search?q=banks+near+me",
+                note: "Any licensed commercial or microfinance bank can open this for you."
+              }
+            },
           },
         },
         "type-registration": {

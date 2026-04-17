@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div>
                 <div class="page-header">
                     <h1 class="page-title">Welcome to Open Niger State</h1>
-                    <p class="page-description">An information platform designed to help business owners and entrepreneurs in Niger State access government services and resources.</p>
+                    <p class="page-description">A Niger state government initiative helping business owners and entrepreneurs access government services and resources in Niger state</p>
                 </div>
                 <div class="tier-list">
         `;

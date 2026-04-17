@@ -749,7 +749,7 @@ a:hover {
   }
   .service-card {
     padding: 30px 20px;
-    border-radius: 0;
+    border-radius: 16px;
   }
   .service-content-wrapper {
     margin-top: -80px;
@@ -1051,9 +1051,14 @@ a:hover {
 /* Guidance Table Styling */
 .guidance-container {
   overflow-x: auto;
+  overflow-y: hidden;
   border-radius: 12px;
   border: 1px solid #E5E7EB;
   margin-top: 32px;
+  /* Fix Safari border-radius clipping bug with overflow */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  transform: translateZ(0);
 }
 
 .guidance-table {
@@ -1111,6 +1116,10 @@ a:hover {
   .guidance-table tr {
     padding: 24px;
     border-bottom: 8px solid #F3F4F6;
+  }
+
+  .guidance-table tr:last-child {
+    border-bottom: none;
   }
   
   .guidance-table td {

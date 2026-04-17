@@ -58,7 +58,7 @@ export default function Home() {
       <div className="container">
         <div className="page-header">
           {/* <h2 className="page-title">Welcome to Open Niger State</h2> */}
-          <p className="page-description">An information platform designed to help business owners and entrepreneurs in Niger State access government services and resources.</p>
+          <p className="page-description">A Niger state government initiative helping business owners and entrepreneurs access government services and resources in Niger state</p>
         </div>
         <div className="tier-list">
           {Object.entries(iaData).map(([key, category]) => (
