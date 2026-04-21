@@ -3,6 +3,7 @@ import { AlertCircle, Menu, X, ArrowUp } from 'lucide-react';
 import { iaData } from '../data';
 import logo from '../assets/logo.png';
 import { useState, useEffect } from 'react';
+import { Breadcrumbs, BreadcrumbItem } from './ui/Breadcrumbs';
 
 export default function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,13 +38,11 @@ export default function Layout() {
   };
   const pathSegments = location.pathname.split('/').filter(Boolean);
 
-  const renderBreadcrumbs = () => {
-    if (pathSegments.length === 0) return null;
+  const getBreadcrumbItems = (): BreadcrumbItem[] => {
+    if (pathSegments.length === 0) return [];
 
     let currentPath = '';
-    const breadcrumbs = [];
-    
-    
+    const breadcrumbs: BreadcrumbItem[] = [];
     let currentNode: any = iaData;
 
     for (let i = 0; i < pathSegments.length; i++) {
@@ -61,21 +60,7 @@ export default function Layout() {
         }
     }
 
-    return (
-      <nav className="breadcrumbs" aria-label="breadcrumb">
-        <Link to="/">Home</Link>
-        {breadcrumbs.map((crumb, index) => (
-          <span key={crumb.path}>
-            <span className="breadcrumb-separator">{'>'}</span>
-            {index === breadcrumbs.length - 1 ? (
-              <span className="breadcrumb-current">{crumb.title}</span>
-            ) : (
-              <Link to={crumb.path}>{crumb.title}</Link>
-            )}
-          </span>
-        ))}
-      </nav>
-    );
+    return breadcrumbs;
   };
 
   return (
@@ -109,7 +94,7 @@ export default function Layout() {
 
       <div className="app-content">
         <div className="container">
-          {renderBreadcrumbs()}
+          <Breadcrumbs items={getBreadcrumbItems()} />
         </div>
         <main>
           <Outlet />

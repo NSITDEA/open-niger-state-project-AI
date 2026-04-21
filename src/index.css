@@ -251,28 +251,28 @@ a:hover {
 
 /* Breadcrumbs */
 .breadcrumbs {
-  padding: 24px 0;
-  font-size: 0.9rem;
-  color: var(--text-muted);
+  padding: var(--space-6) 0;
+  font-size: var(--font-size-sm);
+  color: var(--neutral-600);
 }
 
 .breadcrumbs a {
-  color: var(--color-primary);
+  color: var(--primary-600);
   text-decoration: underline;
 }
 
 .breadcrumbs a:hover {
-  color: var(--color-secondary);
+  color: var(--primary-800);
 }
 
 .breadcrumb-separator {
-  margin: 0 8px;
-  color: var(--color-grey);
+  margin: 0 var(--space-2);
+  color: var(--neutral-400);
 }
 
 .breadcrumb-current {
   font-weight: 500;
-  color: var(--text-muted);
+  color: var(--neutral-600);
 }
 
 /* Hero Section */
