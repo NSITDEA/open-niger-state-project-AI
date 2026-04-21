@@ -81,7 +81,7 @@ export const iaData: IAData = {
               { question: "Do I need to go to a CAC office?", answer: "No — the whole process is 100% online." },
               { question: "How much does it cost in total?", answer: "Expect to pay around ₦11,000–₦20,000 in total." },
               { question: "How long does it take?", answer: "Your certificate is usually ready within 24 to 72 hours." },
-              { question: "Can I register a partnership business?", answer: "Ye this covers sole owners and partnerships too." }
+              { question: "Can I register a partnership business?", answer: "Yes this covers sole owners and partnerships too." }
             ],
             cta: {
               text: "Start your registration →",
