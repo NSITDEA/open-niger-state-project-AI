@@ -1,26 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { iaData } from '../data';
 import { useState } from 'react';
-import { 
-  Rocket, 
-  ClipboardCheck, 
-  Coins, 
-  Map, 
-  Users, 
-  HelpCircle 
-} from 'lucide-react';
-
-const IconComponent = ({ name, className }: { name?: string; className?: string }) => {
-  switch (name) {
-    case 'rocket': return <Rocket className={className} />;
-    case 'clipboard-check': return <ClipboardCheck className={className} />;
-    case 'coins': return <Coins className={className} />;
-    case 'map': return <Map className={className} />;
-    case 'users': return <Users className={className} />;
-    case 'help-circle': return <HelpCircle className={className} />;
-    default: return null;
-  }
-};
+import { Button } from './ui/Button';
+import { ServiceIcon, IconName } from './ui/ServiceIcon';
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -65,9 +47,9 @@ export default function Home() {
                 {Object.entries(iaData)
                   .filter(([key]) => ['start-business', 'tax-compliance', 'get-funding'].includes(key))
                   .map(([key, category]) => (
-                    <Link key={key} to={`/${key}`} className="suggestion-pill">
+                    <Button key={key} to={`/${key}`} variant="pill">
                       {category.title}
-                    </Link>
+                    </Button>
                   ))}
               </div>
             </div>
@@ -84,8 +66,8 @@ export default function Home() {
           {Object.entries(iaData).map(([key, category]) => (
             <div key={key} className="tier-item">
               <div className="tier-item-content">
-                <Link to={`/${key}`} className="tier-item-icon">
-                  <IconComponent name={category.icon} />
+                <Link to={`/${key}`}>
+                  <ServiceIcon name={category.icon as IconName} />
                 </Link>
                 <div className="tier-item-text">
                   <Link to={`/${key}`} className="tier-item-link">{category.title}</Link>

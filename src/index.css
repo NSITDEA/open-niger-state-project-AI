@@ -1,34 +1,105 @@
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap');
 
 :root {
-  /* Color Palette */
-  --color-primary: #385E38; /* Main Dark Green */
-  --color-secondary: #2C3C30; /* Darker Slate Green */
-  --color-tertiary: #1C2D1F; /* Very Dark Green (almost black) */
-  --color-accent: #EBAA34; /* Yellow / Gold */
-  --color-light-green: #DDF8DF; /* Very light green */
-  --color-grey: #D8D8D8; 
-  --color-dark-grey: #4A4A4A;
-  --color-cream: #FFFDF7; /* Off-white background */
+  /* Design Tokens - Colors */
+  --neutral-50: #f9fafb;
+  --neutral-100: #f3f4f6;
+  --neutral-200: #e5e7eb;
+  --neutral-300: #d1d5db;
+  --neutral-400: #9ca3af;
+  --neutral-500: #6b7280;
+  --neutral-600: #4b5563;
+  --neutral-700: #374151;
+  --neutral-800: #1f2937;
+  --neutral-900: #111827;
+
+  --primary-50: #f1f8f1;
+  --primary-100: #ddf8df;
+  --primary-200: #b9edbc;
+  --primary-300: #88dc8d;
+  --primary-400: #55c15c;
+  --primary-500: #385E38; /* Base Dark Green */
+  --primary-600: #2c4a2c;
+  --primary-700: #2C3C30; /* Darker Slate Green */
+  --primary-800: #1C2D1F; /* Very Dark Green */
+  --primary-900: #1a4a2e; /* From Prompt */
+
+  --accent-50: #fffbeb;
+  --accent-100: #fef3c7;
+  --accent-200: #fde68a;
+  --accent-300: #fcd34d;
+  --accent-400: #fbbf24;
+  --accent-500: #EBAA34; /* Base Gold */
+  --accent-600: #e6a817; /* From Prompt */
+  --accent-700: #b45309;
+  --accent-800: #92400e;
+  --accent-900: #78350f;
+
+  /* Legacy & Functional Mappings */
+  --color-primary: var(--primary-500);
+  --color-secondary: var(--primary-700);
+  --color-tertiary: var(--primary-800);
+  --color-accent: var(--accent-500);
+  --color-light-green: var(--primary-100);
+  --color-grey: var(--neutral-300);
+  --color-dark-grey: var(--neutral-600);
+  --color-cream: #FFFDF7;
   --color-white: #FFFFFF;
   
   --bg-main: var(--color-white);
-  --text-main: #111827;
-  --text-muted: #4B5563;
+  --bg-subtle: var(--neutral-100);
+  --text-main: var(--neutral-900);
+  --text-muted: var(--neutral-600);
+  --border-color: var(--neutral-200);
   
-  --border-color: #E5E7EB;
+  /* Feedback Box Colors */
+  --bg-feedback: var(--primary-50);
+  --border-feedback: var(--primary-500);
   
-  /* Feedback Box */
-  --bg-feedback: #FFE9A8;
-  --border-feedback: #FFC726;
-  
-  /* Typography - Matched to alpha.gov.bb */
+  /* Spacing Scale (4px based) */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem;  /* 8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem;    /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem;  /* 24px */
+  --space-8: 2rem;    /* 32px */
+  --space-10: 2.5rem; /* 40px */
+  --space-12: 3rem;   /* 48px */
+  --space-16: 4rem;   /* 64px */
+  --space-20: 5rem;   /* 80px */
+
+  /* Radius Tokens */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --shadow-premium: 0 10px 40px rgba(0, 0, 0, 0.08);
+
+  /* Typography */
   --font-family: 'Figtree', sans-serif;
-  --font-size-body: 20px;
-  --font-size-h1: 56px;
-  --font-size-h2: 40px;
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1.125rem; /* 18px (adjusted for better readability) */
+  --font-size-lg: 1.25rem;   /* 20px */
+  --font-size-xl: 1.5rem;    /* 24px */
+  --font-size-2xl: 1.875rem; /* 30px */
+  --font-size-3xl: 2.25rem;  /* 36px */
+  --font-size-4xl: 3rem;     /* 48px */
+  --font-size-5xl: 3.5rem;   /* 56px */
+
+  --font-size-body: var(--font-size-base);
+  --font-size-h1: var(--font-size-5xl);
+  --font-size-h2: var(--font-size-3xl);
   
-  /* Variables */
   --container-width: 1000px;
 }
 
@@ -254,22 +325,7 @@ a:hover {
   gap: 12px;
 }
 
-.suggestion-pill {
-  background-color: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: white;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
 
-.suggestion-pill:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-color: var(--color-accent);
-}
 
 .search-input {
   flex: 1;
@@ -1169,4 +1225,247 @@ a:hover {
   .guidance-table td:last-child {
     color: #4B5563;
   }
+}/* Design System Showcase Styles */
+/* --- Component Library --- */
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
+  font-family: inherit;
+  text-decoration: none;
 }
+
+.btn-primary { background: var(--primary-500); color: white; }
+.btn-primary:hover { background: var(--primary-600); transform: translateY(-1px); }
+
+.btn-secondary { background: var(--primary-700); color: white; }
+.btn-secondary:hover { background: var(--primary-800); }
+
+.btn-accent { background: var(--accent-500); color: var(--neutral-900); }
+.btn-accent:hover { background: var(--accent-600); }
+
+.btn-outline { background: transparent; border-color: var(--primary-500); color: var(--primary-500); }
+.btn-outline:hover { background: var(--primary-50); }
+
+.btn-ghost { background: transparent; color: var(--neutral-600); }
+.btn-ghost:hover { background: var(--neutral-100); color: var(--neutral-900); }
+
+/* Pill Variant (as seen in suggestions) */
+.btn-pill {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+.btn-pill:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--color-accent);
+  text-decoration: none;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-primary { background: var(--primary-100); color: var(--primary-700); }
+.badge-accent { background: var(--accent-100); color: var(--accent-800); }
+.badge-neutral { background: var(--neutral-100); color: var(--neutral-600); }
+
+/* Cards */
+.card {
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: var(--space-8);
+  border: 1px solid var(--neutral-200);
+}
+.card-premium {
+  box-shadow: var(--shadow-premium);
+  border-color: var(--neutral-100);
+}
+.card-accent {
+  border-left: 4px solid var(--accent-500);
+}
+
+/* Service Icons */
+.service-icon-box {
+  background-color: var(--primary-100);
+  color: var(--primary-500);
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.service-icon-box:hover {
+  transform: scale(1.05);
+  background-color: var(--primary-500);
+  color: white;
+}
+
+
+
+
+/* Forms */
+.form-group {
+  margin-bottom: var(--space-6);
+  width: 100%;
+}
+
+.label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+  color: var(--neutral-700);
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--neutral-200);
+  background: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 3px var(--primary-100);
+}
+
+.input-icon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--neutral-400);
+  display: flex;
+  align-items: center;
+}
+
+.input.has-icon {
+  padding-left: 2.75rem;
+}
+
+.error-text {
+  color: #dc2626;
+  font-size: var(--font-size-xs);
+  margin-top: var(--space-1);
+}
+
+/* --- Design System Showcase Specifics --- */
+.ds-container {
+  padding: var(--space-12) 0;
+}
+
+.ds-section {
+  margin-bottom: var(--space-20);
+}
+
+.ds-section-title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  margin-bottom: var(--space-8);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--neutral-100);
+  color: var(--primary-900);
+}
+
+.ds-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-6);
+}
+
+.ds-color-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--neutral-200);
+}
+
+.ds-color-swatch {
+  height: 100px;
+  width: 100%;
+}
+
+.ds-color-info {
+  padding: var(--space-4);
+  background: white;
+}
+
+.ds-color-name {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  display: block;
+}
+
+.ds-color-hex {
+  font-family: monospace;
+  font-size: var(--font-size-xs);
+  color: var(--neutral-500);
+}
+
+.ds-type-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-8);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--neutral-100);
+}
+
+.ds-type-label {
+  width: 120px;
+  font-size: var(--font-size-xs);
+  color: var(--neutral-400);
+  font-weight: 500;
+}
+
+.ds-component-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6);
+  align-items: center;
+}
+
+.ds-spacing-bar {
+  background: var(--primary-400);
+  height: 24px;
+  border-radius: var(--radius-xs);
+}
+
+.ds-card-example {
+  background: white;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-premium);
+  border: 1px solid var(--neutral-100);
+  max-width: 400px;
+}
+

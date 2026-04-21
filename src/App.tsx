@@ -5,6 +5,7 @@ import Category from './components/Category';
 import Article from './components/Article';
 import SearchResults from './components/SearchResults';
 import About from './components/About';
+import DesignSystem from './components/DesignSystem';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="search" element={<SearchResults />} />
         <Route path="about" element={<About />} />
+        <Route path="design-system" element={<DesignSystem />} />
         <Route path=":catKey" element={<Category />} />
         <Route path=":catKey/:subKey" element={<Category />} />
         <Route path=":catKey/:subKey/:articleKey" element={<Article />} />
