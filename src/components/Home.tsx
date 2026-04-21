@@ -1,6 +1,26 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { iaData } from '../data';
 import { useState } from 'react';
+import { 
+  Rocket, 
+  ClipboardCheck, 
+  Coins, 
+  Map, 
+  Users, 
+  HelpCircle 
+} from 'lucide-react';
+
+const IconComponent = ({ name, className }: { name?: string; className?: string }) => {
+  switch (name) {
+    case 'rocket': return <Rocket className={className} />;
+    case 'clipboard-check': return <ClipboardCheck className={className} />;
+    case 'coins': return <Coins className={className} />;
+    case 'map': return <Map className={className} />;
+    case 'users': return <Users className={className} />;
+    case 'help-circle': return <HelpCircle className={className} />;
+    default: return null;
+  }
+};
 
 export default function Home() {
   const [query, setQuery] = useState('');
@@ -63,8 +83,15 @@ export default function Home() {
         <div className="tier-list">
           {Object.entries(iaData).map(([key, category]) => (
             <div key={key} className="tier-item">
-              <Link to={`/${key}`} className="tier-item-link">{category.title}</Link>
-              <p className="tier-item-desc">{category.description}</p>
+              <div className="tier-item-content">
+                <div className="tier-item-icon">
+                  <IconComponent name={category.icon} />
+                </div>
+                <div className="tier-item-text">
+                  <Link to={`/${key}`} className="tier-item-link">{category.title}</Link>
+                  <p className="tier-item-desc">{category.description}</p>
+                </div>
+              </div>
             </div>
           ))}
         </div>

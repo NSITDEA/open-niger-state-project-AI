@@ -34,6 +34,7 @@ export type Tier3Category = {
 export type Tier2Category = {
   title: string;
   description: string;
+  icon?: string;
   children: Record<string, Tier3Category>;
 };
 
@@ -42,7 +43,8 @@ export type IAData = Record<string, Tier2Category>;
 export const iaData: IAData = {
   "start-business": {
     title: "Start or Register a Business",
-    description: "Everything you need to legally set up and register your business in Niger State.",
+    description: "Register your business and get legal in Niger State.",
+    icon: "rocket",
     children: {
       "register": {
         title: "Register my business",
@@ -92,7 +94,7 @@ export const iaData: IAData = {
               type: "service",
               readTime: "4 min read",
               views: "2.1k views",
-              about: "SMEDAN helps small and medium businesses in Nigeria grow faster. When you register, you get access to government loans, grants, and free training. Registration is free and takes less than 10 minutes.",
+              about: "SMEDAN helps small businesses in Nigeria grow faster. Register now to get loans, grants, and free training. It is free and takes under 10 minutes.",
               benefits: [
                 "Get access to government loans and grants",
                 "Access ₦50,000 conditional grants for nano businesses",
@@ -144,7 +146,7 @@ export const iaData: IAData = {
               type: "service",
               readTime: "5 min read",
               views: "850 views",
-              about: "A cooperative is when people come together to help each other grow their businesses or save money together. You register with the Niger State Ministry of Commerce and Industry. This gives you legal protection and helps you get loans.",
+              about: "Join a cooperative to grow and save money with others. Register with the Ministry of Commerce to get legal protection. This helps your group get government loans.",
               benefits: [
                 "Get legal protection across Niger State",
                 "Access government loans and grants more easily",
@@ -209,7 +211,7 @@ export const iaData: IAData = {
               type: "service",
               readTime: "5 min read",
               views: "4.2k views",
-              about: "You can open a bank account for your business at any bank. This keeps your business money separate from your personal money. It helps you manage expenses and get loans easier.",
+              about: "Open a business bank account at any bank. Keep your business money separate from your personal money. This helps you track spends and get loans.",
               benefits: [
                 "Keep business and personal money separate",
                 "Get access to business loans and credit",
@@ -262,7 +264,7 @@ export const iaData: IAData = {
             "guidance": { 
               title: "Registration Guidance", 
               type: "guidance",
-              description: "The right registration depends on the size and type of your business. Use this guide to choose.",
+              description: "Pick the right registration for your business size and type.",
               rows: [
                 { 
                   situation: "You work alone: a shop, stall, or trader", 
@@ -307,7 +309,8 @@ export const iaData: IAData = {
     },
     "tax-compliance": {
       title: "Tax & Compliance",
-      description: "Understand your tax obligations and how to stay compliant with state laws.",
+      description: "Learn about your taxes and how to follow state laws.",
+      icon: "clipboard-check",
       children: {
         "how-to-pay": {
           title: "How to pay tax",
@@ -332,7 +335,8 @@ export const iaData: IAData = {
     },
     "get-funding": {
       title: "Get Funding",
-      description: "Explore financial support options including loans and grants for your business.",
+      description: "Find loans and money support for your business.",
+      icon: "coins",
       children: {
         "loans": {
           title: "Loans",
@@ -366,7 +370,8 @@ export const iaData: IAData = {
     },
     "land-premises": {
       title: "Land & Premises",
-      description: "Find the right location for your operations, including shops and land.",
+      description: "Find the best shops or land for your business.",
+      icon: "map",
       children: {
         "shop-market": {
           title: "Get a shop or market stall",
@@ -392,7 +397,8 @@ export const iaData: IAData = {
     },
     "learn-connect": {
       title: "Learn & Connect",
-      description: "Develop your skills and network with other businesses and associations.",
+      description: "Learn new skills and meet other business owners.",
+      icon: "users",
       children: {
         "training-skills": {
           title: "Training & skills",
@@ -419,7 +425,8 @@ export const iaData: IAData = {
     },
     "help-disputes": {
       title: "Help & Disputes",
-      description: "Resolve issues, leave feedback, and find helpful resources.",
+      description: "Fix problems, give feedback, and get help.",
+      icon: "help-circle",
       children: {
         "complaints-feedback": {
           title: "Complaints & feedback",

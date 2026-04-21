@@ -395,9 +395,38 @@ a:hover {
   padding-top: 24px;
 }
 
-.tier-item:first-child {
-  border-top: none;
-  padding-top: 0;
+.tier-item-content {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.tier-item-icon {
+  background-color: var(--color-light-green);
+  color: var(--color-primary);
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.tier-item:hover .tier-item-icon {
+  transform: scale(1.05);
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+.tier-item-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tier-item-text {
+  flex: 1;
 }
 
 .tier-item-link {
@@ -409,13 +438,15 @@ a:hover {
   display: inline-block;
   margin-bottom: 8px;
 }
+
 .tier-item-link:hover {
   color: var(--color-secondary);
 }
 
 .tier-item-desc {
-  color: var(--text-main);
+  color: var(--text-muted);
   font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 .tier-item-level2 h2 {
