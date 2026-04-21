@@ -84,9 +84,9 @@ export default function Home() {
           {Object.entries(iaData).map(([key, category]) => (
             <div key={key} className="tier-item">
               <div className="tier-item-content">
-                <div className="tier-item-icon">
+                <Link to={`/${key}`} className="tier-item-icon">
                   <IconComponent name={category.icon} />
-                </div>
+                </Link>
                 <div className="tier-item-text">
                   <Link to={`/${key}`} className="tier-item-link">{category.title}</Link>
                   <p className="tier-item-desc">{category.description}</p>
