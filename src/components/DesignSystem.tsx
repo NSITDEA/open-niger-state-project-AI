@@ -8,6 +8,7 @@ import { Badge } from './ui/Badge';
 import { Card } from './ui/Card';
 import { Input } from './ui/Input';
 import { ServiceIcon, IconName } from './ui/ServiceIcon';
+import { Breadcrumbs } from './ui/Breadcrumbs';
 
 export default function DesignSystem() {
   const colors = [
@@ -185,6 +186,20 @@ export default function DesignSystem() {
             defaultValue="Invalid data"
           />
           <Input label="Disabled State" disabled placeholder="Can't type here" />
+        </div>
+      </section>
+
+      {/* Navigation Section */}
+      <section className="ds-section">
+        <h2 className="ds-section-title">Navigation (Breadcrumbs)</h2>
+        <div style={{ background: 'white', padding: 'var(--space-4) var(--space-8)', borderRadius: 'var(--radius-md)', border: '1px solid var(--neutral-200)' }}>
+          <Breadcrumbs 
+            items={[
+              { title: 'Start or run a business', path: '/start-business' },
+              { title: 'Register my business', path: '/start-business/register-my-business' },
+              { title: 'Register with CAC', path: '/start-business/register-my-business/register-with-cac' }
+            ]} 
+          />
         </div>
       </section>
 
