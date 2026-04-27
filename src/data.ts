@@ -21,10 +21,49 @@ export type GuidanceArticle = {
   }[];
 };
 
+export type ListingArticle = {
+  title: string;
+  type: "listing";
+  description: string;
+  warning?: string;
+  items: {
+    status: string;
+    title: string;
+    issuer: string;
+    amount: string;
+    eligibility: string;
+    link: string;
+  }[];
+};
+
+export type DirectoryArticle = {
+  title: string;
+  type: "directory";
+  description: string;
+  items: {
+    name: string;
+    description: string;
+    image: string;
+    excos: {
+      role: string;
+      name: string;
+      image: string;
+    }[];
+    contact: {
+      phone?: string;
+      email?: string;
+      website?: string;
+      address?: string;
+    };
+  }[];
+};
+
 export type Tier4Article = 
   | { title: string; type: "content" } 
   | ServiceArticle
-  | GuidanceArticle;
+  | GuidanceArticle
+  | ListingArticle
+  | DirectoryArticle;
 
 export type Tier3Category = {
   title: string;
@@ -341,7 +380,106 @@ export const iaData: IAData = {
         "loans": {
           title: "Loans",
           children: {
-            "find-loans": { title: "Find loans available to my business", type: "content" },
+            "find-loans": { 
+              title: "Find loans available to my business", 
+              type: "listing",
+              description: "A loan is money you borrow and must pay back with interest. Different loans have different rules about how much you can get and when you pay it back.",
+              warning: "Only take loans from licensed banks or official government programs. Beware of 'instant' loan apps that ask for your contacts — they are often predatory.",
+              items: [
+                {
+                  status: "Ongoing recruitment",
+                  title: "Agricultural Support Loan",
+                  issuer: "Ministry of Agriculture and Rural Development",
+                  amount: "₦1,000,000 to ₦10,000,000",
+                  eligibility: "Farmers and agro-processors in Niger State. Must have farm land or warehouse.",
+                  link: "/get-funding/loans/agric-loan"
+                },
+                {
+                  status: "Apply via Commercial Banks",
+                  title: "SMEDAN MSME Development Fund",
+                  issuer: "SMEDAN / Central Bank of Nigeria",
+                  amount: "₦500,000 to ₦5,000,000",
+                  eligibility: "Small businesses with at least 1 year of operation. Must be registered with SMEDAN and CAC.",
+                  link: "/get-funding/loans/smedan-msme-loan"
+                }
+              ]
+            },
+            "agric-loan": {
+              title: "Agricultural Support Loan",
+              type: "service",
+              readTime: "6 min read",
+              views: "2.8k views",
+              about: "This loan program is specifically designed to boost food security in Niger State. It provides low-interest capital for seasonal farming, livestock production, and agricultural equipment procurement.",
+              benefits: [
+                "Low interest rate of 9% per annum",
+                "Grace period of up to 6 months before repayment starts",
+                "Technical advisory services from ministry extension workers",
+                "Help with sourcing quality fertilizers and seeds",
+                "Support for finding off-takers for your harvest"
+              ],
+              requirements: [
+                "Evidence of farm ownership or lease agreement in Niger State",
+                "Business registration certificate (CAC)",
+                "Passport photograph and valid ID (NIN or Voter's Card)",
+                "Two guarantors (civil servants or recognized community leaders)",
+                "A simple production plan showing what you will grow"
+              ],
+              steps: [
+                { title: "Obtain application form", description: "Visit the Area Office of the Ministry of Agriculture nearest to you." },
+                { title: "Farm inspection", description: "Ministry officials will visit your farm to verify your location and activity." },
+                { title: "Interview and screening", description: "Discuss your needs with the credit committee." },
+                { title: "Account opening", description: "Open an account with the designated partner bank for disbursement." },
+                { title: "Loan disbursement", description: "Funds are released directly for your farm inputs or equipment." }
+              ],
+              faq: [
+                { question: "Can I use the loan for non-farming business?", answer: "No, this loan is strictly for agricultural activities within Niger State." },
+                { question: "What is the maximum repayment period?", answer: "Usually 12 to 24 months, depending on the crop cycle." },
+                { question: "Do I need collateral?", answer: "For loans above ₦2m, some form of security or stronger guarantors may be required." }
+              ],
+              cta: {
+                text: "Apply at the Ministry",
+                link: "/contact-desk-officer",
+                note: "Visit the Ministry of Agriculture at the State Secretariat, Minna."
+              }
+            },
+            "smedan-msme-loan": {
+              title: "SMEDAN MSME Development Fund",
+              type: "service",
+              readTime: "5 min read",
+              views: "7.1k views",
+              about: "The SMEDAN MSME Development Fund is a federal initiative implemented in partnership with state governments and commercial banks. It aims to bridge the funding gap for small businesses by providing accessible credit.",
+              benefits: [
+                "Competitive interest rates lower than standard commercial loans",
+                "Access to business management training modules",
+                "Inclusion in the national MSME database",
+                "Flexible repayment terms based on business cash flow",
+                "Direct mentorship from business development experts"
+              ],
+              requirements: [
+                "SMEDAN registration number (ESSN)",
+                "CAC business registration documents",
+                "Tax Identification Number (TIN)",
+                "Bank statements for the last 6 to 12 months",
+                "Proof of business location (utility bill)"
+              ],
+              steps: [
+                { title: "Register with SMEDAN", description: "Ensure you have your SMEDAN certificate from portal.smedan.gov.ng." },
+                { title: "Choose a partner bank", description: "Identify which commercial or microfinance banks are participating in the fund." },
+                { title: "Submit loan application", description: "Provide your business plan and financial records to the bank." },
+                { title: "Bank appraisal", description: "The bank will evaluate your business's ability to repay the loan." },
+                { title: "Approval and funding", description: "Once approved, the loan is disbursed to your business account." }
+              ],
+              faq: [
+                { question: "Does SMEDAN give the money directly?", answer: "No, SMEDAN facilitates the process, but the actual loans are disbursed through partner banks." },
+                { question: "What is the minimum loan amount?", answer: "The fund starts from ₦500,000 for qualified businesses." },
+                { question: "Can I apply without CAC registration?", answer: "Generally no, most participating banks require formal registration." }
+              ],
+              cta: {
+                text: "Visit SMEDAN Portal",
+                link: "https://portal.smedan.gov.ng",
+                note: "Start by getting your SMEDAN number if you don't have one."
+              }
+            },
             "loan-eligibility": { title: "Check loan eligibility", type: "content" },
             "apply-loan": { title: "How to apply for a loan", type: "content" },
           },
@@ -349,7 +487,108 @@ export const iaData: IAData = {
         "grants": {
           title: "Grants",
           children: {
-            "find-grants": { title: "Find grants available to my business", type: "content" },
+            "find-grants": { 
+              title: "Find grants available to my business", 
+              type: "listing",
+              description: "A grant is money given to your business that you do not pay back. Grants are competitive — not everyone who applies will get one.",
+              warning: "Never pay anyone to help you get a grant. Official grants cost nothing to apply for. Anyone asking for a fee is running a scam.",
+              items: [
+                {
+                  status: "Open — closes 30 June 2026",
+                  title: "Youth Business Grant 2026",
+                  issuer: "Ministry of Youths and Social Development",
+                  amount: "₦500,000 to ₦2,000,000",
+                  eligibility: "Business owners aged 18 to 35. Business must be less than 3 years old.",
+                  link: "/get-funding/grants/youth-business-grant"
+                },
+                {
+                  status: "Open — accepting applications now",
+                  title: "MSME Support Fund",
+                  issuer: "Ministry of Commerce, Industry and Cooperative",
+                  amount: "₦200,000 to ₦1,000,000",
+                  eligibility: "Small and micro businesses in Niger State. You must be registered with CAC.",
+                  link: "/get-funding/grants/msme-support-fund"
+                }
+              ]
+            },
+            "youth-business-grant": {
+              title: "Youth Business Grant 2026",
+              type: "service",
+              readTime: "4 min read",
+              views: "3.5k views",
+              about: "The Youth Business Grant is a state-funded initiative designed to empower young entrepreneurs in Niger State. It provides non-repayable capital to start or grow small businesses that have high potential for job creation.",
+              benefits: [
+                "Get up to ₦2,000,000 in non-repayable funding",
+                "Receive 6 months of business mentorship",
+                "Access to specialized workshops on financial management",
+                "Networking opportunities with other young entrepreneurs",
+                "Certificate of participation from the Ministry"
+              ],
+              requirements: [
+                "Must be a resident of Niger State",
+                "Aged between 18 and 35 years",
+                "Business must be registered with CAC",
+                "A clear business plan or growth strategy",
+                "Proof of address (utility bill or tax clearance)",
+                "Passport photograph and valid ID"
+              ],
+              steps: [
+                { title: "Download the application form", description: "Get the form from the official Ministry website or at the Paiko Road office." },
+                { title: "Fill in your details", description: "Provide accurate information about yourself and your business model." },
+                { title: "Attach required documents", description: "Upload or attach your CAC certificate, ID, and business plan." },
+                { title: "Submit for review", description: "Send your completed application via the portal or at the designated drop-off points." },
+                { title: "Attend the interview", description: "Shortlisted candidates will be invited for a brief presentation of their business." }
+              ],
+              faq: [
+                { question: "Is this a loan?", answer: "No, this is a grant. You do not need to pay the money back." },
+                { question: "Can I apply if my business is not yet registered?", answer: "No, CAC registration is a mandatory requirement for this grant." },
+                { question: "How long does the selection process take?", answer: "Usually 4-6 weeks after the application window closes." }
+              ],
+              cta: {
+                text: "Apply for the grant now",
+                link: "https://youth.nigerstate.gov.ng/grants",
+                note: "You'll be taken to the Ministry of Youths and Social Development portal"
+              }
+            },
+            "msme-support-fund": {
+              title: "MSME Support Fund",
+              type: "service",
+              readTime: "5 min read",
+              views: "5.2k views",
+              about: "The MSME Support Fund aims to provide a safety net and growth capital for micro and small enterprises in Niger State. This fund focuses on businesses in agriculture, manufacturing, and technology sectors.",
+              benefits: [
+                "Direct funding of up to ₦1,000,000",
+                "Low-interest follow-on loan options",
+                "Free access to Niger State trade fairs",
+                "Technical support for product standardization",
+                "Tax advisory services for the first year"
+              ],
+              requirements: [
+                "Registered business with CAC",
+                "Tax Identification Number (TIN)",
+                "Niger State Business Premises registration",
+                "Bank statement for the last 6 months",
+                "Evidence of at least 2 employees (for small businesses)",
+                "Minimum 1 year of operation"
+              ],
+              steps: [
+                { title: "Register on the MSME Portal", description: "Create an account on the state's MSME support portal." },
+                { title: "Complete the eligibility quiz", description: "Answer a few questions to see if your business qualifies for this specific fund." },
+                { title: "Upload business documents", description: "Provide your CAC and Tax documents as requested." },
+                { title: "Submit your funding request", description: "Specify what the funds will be used for in your business." },
+                { title: "Site verification visit", description: "Ministry officials may visit your business location for verification." }
+              ],
+              faq: [
+                { question: "What business sectors are prioritized?", answer: "Agriculture, light manufacturing, and tech-enabled services are highly encouraged." },
+                { question: "Do I need a guarantor?", answer: "For the grant portion, no guarantor is needed. Only for additional loans." },
+                { question: "Can I apply for both MSME and Youth grants?", answer: "No, you must choose the one that best fits your business profile." }
+              ],
+              cta: {
+                text: "Register for MSME Support",
+                link: "https://msme.nigerstate.gov.ng",
+                note: "Official portal for the Ministry of Commerce, Industry and Cooperative"
+              }
+            },
             "grant-eligibility": { title: "Check grant eligibility", type: "content" },
             "apply-grant": { title: "How to apply for a grant", type: "content" },
           },
@@ -417,8 +656,160 @@ export const iaData: IAData = {
         "associations": {
           title: "Associations directory",
           children: {
-            "biz-associations": { title: "Business Associations (directory listing)", type: "content" },
-            "market-associations": { title: "Market Associations (directory listing)", type: "content" },
+            "biz-associations": { 
+              title: "Business Associations", 
+              type: "directory",
+              description: "Connect with key business associations in Niger State to grow your network, access advocacy, and stay informed about industry trends.",
+              items: [
+                {
+                  name: "Niger State Chamber of Commerce, Industry, Mines and Agriculture (NACCIMA)",
+                  description: "The primary voice of the private sector in Niger State, dedicated to promoting and protecting the interests of businesses across all sectors.",
+                  image: "https://i.pinimg.com/736x/9f/de/68/9fde682430b44379915141a13641fde5.jpg",
+                  excos: [
+                    { role: "President", name: "Alhaji Muhammad Usman", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Director General", name: "Dr. Elizabeth Okoro", image: "https://i.pinimg.com/1200x/bb/6c/96/bb6c96152d16bc2e08dfb87b52df3da5.jpg" }
+                  ],
+                  contact: {
+                    phone: "+234 803 123 4567",
+                    email: "info@nigerchamber.org",
+                    website: "https://nigerchamber.org",
+                    address: "Commerce House, Paiko Road, Minna"
+                  }
+                },
+                {
+                  name: "Association of Small Business Owners of Nigeria (ASBON) - Niger Chapter",
+                  description: "Empowering small business owners through training, financial inclusion, and collective bargaining with government agencies.",
+                  image: "https://i.pinimg.com/736x/a9/f0/6b/a9f06bc96b1ccc1c0354391fd3b0c8b0.jpg",
+                  excos: [
+                    { role: "State Coordinator", name: "Mallam Ibrahim Sani", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Secretary", name: "Mrs. Fatima Bello", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 805 987 6543",
+                    email: "niger@asbon.org.ng",
+                    address: "Suite 4, Bosso Road Shopping Complex, Minna"
+                  }
+                },
+                {
+                  name: "Manufacturers Association of Nigeria (MAN) - North Central Branch",
+                  description: "Advocating for the manufacturing sector in Niger State, focusing on infrastructure, policy, and market access for locally made goods.",
+                  image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800",
+                  excos: [
+                    { role: "Branch Chairman", name: "Engr. Yusuf Abubakar", image: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Executive Secretary", name: "Grace Adeyemi", image: "https://images.unsplash.com/photo-1589156280159-27698a70f29e?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 802 345 6789",
+                    email: "northcentral@man.eg",
+                    website: "https://manufacturersnigeria.org",
+                    address: "Industrial Layout, Chanchaga, Minna"
+                  }
+                },
+                {
+                  name: "Niger State Association of Professional Bodies (NSAPB)",
+                  description: "An umbrella organization for professional associations (ICAN, NBA, NSE, etc.) promoting ethics and professional excellence in the state.",
+                  image: "https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=800",
+                  excos: [
+                    { role: "Chairman", name: "Barr. Ahmed Idris", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Vice Chairman", name: "Arc. Amina Yunusa", image: "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 703 555 1122",
+                    email: "nsapb.minna@gmail.com",
+                    address: "Professional Center, Near State Assembly, Minna"
+                  }
+                },
+                {
+                  name: "Niger State Entrepreneurs Forum",
+                  description: "A dynamic group of young and innovative entrepreneurs focused on technology, creative industries, and modern services.",
+                  image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800",
+                  excos: [
+                    { role: "Convener", name: "Chidi Nwosu", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Operations Lead", name: "Hadiza Umar", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 810 444 3322",
+                    email: "hello@nsef.ng",
+                    website: "https://nsef.ng",
+                    address: "Innovation Hub, Top Floor, Shiroro Road, Minna"
+                  }
+                }
+              ]
+            },
+            "market-associations": { 
+              title: "Market Associations", 
+              type: "directory",
+              description: "Directory of major market unions and trader associations across Niger State's commercial hubs.",
+              items: [
+                {
+                  name: "Minna Central Market Traders Association",
+                  description: "Representing thousands of traders in the state capital's largest commercial center. Coordinates security, sanitation, and welfare.",
+                  image: "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?w=800",
+                  excos: [
+                    { role: "Chairman (Sarkin Kasuwa)", name: "Alhaji Shehu Vatsa", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Market Secretary", name: "Bala Mohammed", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 803 777 8899",
+                    address: "Market Administrative Block, Central Market, Minna"
+                  }
+                },
+                {
+                  name: "Suleja Modern Market Traders Union",
+                  description: "One of the busiest market associations in Nigeria, serving as a gateway for goods entering and leaving the North and FCT.",
+                  image: "https://images.unsplash.com/photo-1531053326607-9d349096d887?w=800",
+                  excos: [
+                    { role: "Union President", name: "Chief Emeka Okafor", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Financial Secretary", name: "Alhaji Musa Gwari", image: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 706 111 2233",
+                    email: "sulejamarket@niger.gov.ng",
+                    address: "International Market Complex, Suleja"
+                  }
+                },
+                {
+                  name: "Bida Artisans and Traders Association",
+                  description: "Focused on the traditional crafts and trade sectors of Bida, including brass works, glass making, and food commodities.",
+                  image: "https://images.unsplash.com/photo-1516733725897-1aa73b87c8e8?w=800",
+                  excos: [
+                    { role: "Chairman", name: "Alhaji Yahaya Nuhu", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Treasurer", name: "Malam Dauda Bida", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 812 333 4455",
+                    address: "Emir's Market Square, Bida"
+                  }
+                },
+                {
+                  name: "Kontagora Market Union",
+                  description: "Coordinating trade in the western corridor of the state, specializing in livestock and large-scale grain commodities.",
+                  image: "https://i.pinimg.com/736x/2b/7e/d2/2b7ed24437020914897984f11ef1927b.jpg",
+                  excos: [
+                    { role: "General Coordinator", name: "Alhaji Garba Kontagora", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=200" },
+                    { role: "Public Relations Officer", name: "Usman Danladi", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 905 666 7788",
+                    address: "Main Market Road, Kontagora"
+                  }
+                },
+                {
+                  name: "New Bussa Traders & Farmers Association",
+                  description: "A unique association linking producers and sellers in the Borgu region, with a focus on fish and agricultural products.",
+                  image: "https://i.pinimg.com/736x/97/46/37/974637a383fab8461352b44abc812631.jpg",
+                  excos: [
+                    { role: "Association Lead", name: "Mrs. Sarah James", image: "https://i.pinimg.com/736x/05/4c/8b/054c8b430a0dd172042b93a42f4e9034.jpg" },
+                    { role: "Secretary", name: "Isah Borgu", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=200" }
+                  ],
+                  contact: {
+                    phone: "+234 808 222 1100",
+                    email: "newbussa.traders@gmail.com",
+                    address: "Kainji Market Area, New Bussa"
+                  }
+                }
+              ]
+            },
           },
         },
       },

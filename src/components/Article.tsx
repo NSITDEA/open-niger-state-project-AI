@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { iaData, ServiceArticle, GuidanceArticle } from '../data';
-import { Clock, Eye, CheckCircle2, ChevronDown, ArrowRight } from 'lucide-react';
+import { iaData, ServiceArticle, GuidanceArticle, ListingArticle, DirectoryArticle } from '../data';
+import { Clock, Eye, CheckCircle2, ChevronDown, ArrowRight, AlertTriangle, Building2, Phone, Mail, Globe, MapPin, Users, ExternalLink } from 'lucide-react';
+import { Badge } from './ui/Badge';
+import { Button } from './ui/Button';
 
 export default function Article() {
   const { catKey, subKey, articleKey } = useParams<{ catKey: string; subKey: string; articleKey: string }>();
@@ -53,6 +55,67 @@ export default function Article() {
     );
   };
 
+  // Render Listing Layout
+  if (article.type === 'listing') {
+    const l = article as ListingArticle;
+    return (
+      <div className="container" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
+        <div className="page-header">
+          <h1 className="page-title">{l.title}</h1>
+          <p className="page-description" style={{ fontSize: '1.25rem', color: '#4B5563', maxWidth: '800px' }}>
+            {l.description}
+          </p>
+        </div>
+
+        {l.warning && (
+          <div className="warning-box">
+            <div className="warning-icon-wrapper">
+              <AlertTriangle className="warning-icon" size={24} />
+            </div>
+            <div className="warning-content">
+              <p>{l.warning}</p>
+            </div>
+          </div>
+        )}
+
+        <div className="listing-section">
+          <h2 className="section-title">Grants open right now</h2>
+          <div className="listing-grid">
+            {l.items.map((item, i) => (
+              <div key={i} className="listing-card">
+                <div className="listing-card-header">
+                  <Badge variant="accent" className="status-badge">{item.status}</Badge>
+                  <h3 className="listing-card-title">{item.title}</h3>
+                  <div className="listing-card-issuer">
+                    <Building2 size={16} />
+                    <span>{item.issuer}</span>
+                  </div>
+                </div>
+                <div className="listing-card-body">
+                  <div className="listing-detail-item">
+                    <div className="detail-label">Amount:</div>
+                    <div className="detail-value highlight">{item.amount}</div>
+                  </div>
+                  <div className="listing-detail-item">
+                    <div className="detail-label">Who can apply:</div>
+                    <div className="detail-value">{item.eligibility}</div>
+                  </div>
+                  <div className="listing-card-footer">
+                    <Button variant="primary" to={item.link}>
+                      How to apply
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {renderRelated()}
+      </div>
+    );
+  }
+
   // Render Guidance Layout
   if (article.type === 'guidance') {
     const g = article as GuidanceArticle;
@@ -94,6 +157,96 @@ export default function Article() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        {renderRelated()}
+      </div>
+    );
+  }
+
+  // Render Directory Layout
+  if (article.type === 'directory') {
+    const d = article as DirectoryArticle;
+    return (
+      <div className="container" style={{ paddingTop: '40px', paddingBottom: '80px' }}>
+        <div className="page-header">
+          <h1 className="page-title">{d.title}</h1>
+          <p className="page-description" style={{ fontSize: '1.25rem', color: '#4B5563', maxWidth: '800px' }}>
+            {d.description}
+          </p>
+        </div>
+
+        <div className="directory-list">
+          {d.items.map((item, i) => (
+            <div key={i} className="directory-item-card">
+              <div className="directory-item-header">
+                <div className="directory-item-image">
+                  <img src={item.image} alt={item.name} />
+                </div>
+                <div className="directory-item-main-info">
+                  <h2 className="directory-item-name">{item.name}</h2>
+                  <p className="directory-item-description">{item.description}</p>
+                </div>
+              </div>
+
+              <div className="directory-item-content">
+                <div className="directory-excos-section">
+                  <h3 className="sub-section-title">
+                    <Users size={20} />
+                    Leadership & Excos
+                  </h3>
+                  <div className="exco-grid">
+                    {item.excos.map((exco, ei) => (
+                      <div key={ei} className="exco-card">
+                        <div className="exco-avatar">
+                          <img src={exco.image} alt={exco.name} />
+                        </div>
+                        <div className="exco-info">
+                          <div className="exco-role">{exco.role}</div>
+                          <div className="exco-name">{exco.name}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="directory-contact-section">
+                  <h3 className="sub-section-title">
+                    <Phone size={20} />
+                    Contact Information
+                  </h3>
+                  <div className="contact-details">
+                    {item.contact.address && (
+                      <div className="contact-item">
+                        <MapPin size={18} />
+                        <span>{item.contact.address}</span>
+                      </div>
+                    )}
+                    {item.contact.phone && (
+                      <div className="contact-item">
+                        <Phone size={18} />
+                        <a href={`tel:${item.contact.phone}`}>{item.contact.phone}</a>
+                      </div>
+                    )}
+                    {item.contact.email && (
+                      <div className="contact-item">
+                        <Mail size={18} />
+                        <a href={`mailto:${item.contact.email}`}>{item.contact.email}</a>
+                      </div>
+                    )}
+                    {item.contact.website && (
+                      <div className="contact-item">
+                        <Globe size={18} />
+                        <a href={item.contact.website} target="_blank" rel="noopener noreferrer">
+                          Visit Website <ExternalLink size={14} />
+                        </a>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
 
         {renderRelated()}
