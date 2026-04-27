@@ -1600,6 +1600,49 @@ a:hover {
 }
 
 /* Directory Listing Styles */
+.directory-search-container {
+  margin-bottom: 40px;
+  max-width: 600px;
+}
+
+.directory-search-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.directory-search-wrapper .search-icon {
+  position: absolute;
+  left: 16px;
+  color: var(--neutral-400);
+  pointer-events: none;
+}
+
+.directory-search-input {
+  width: 100%;
+  padding: 16px 16px 16px 48px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--neutral-300);
+  font-size: 1.125rem;
+  font-family: var(--font-family);
+  transition: all 0.3s ease;
+  background: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.directory-search-input:focus {
+  outline: none;
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 4px var(--primary-50);
+}
+
+.search-results-meta {
+  margin-top: 12px;
+  font-size: 0.875rem;
+  color: var(--neutral-500);
+  font-weight: 500;
+}
+
 .directory-list {
   display: flex;
   flex-direction: column;

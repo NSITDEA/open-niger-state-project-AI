@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { iaData, ServiceArticle, GuidanceArticle, ListingArticle, DirectoryArticle } from '../data';
-import { Clock, Eye, CheckCircle2, ChevronDown, ArrowRight, AlertTriangle, Building2, Phone, Mail, Globe, MapPin, Users, ExternalLink } from 'lucide-react';
+import { Clock, Eye, CheckCircle2, ChevronDown, ArrowRight, AlertTriangle, Building2, Phone, Mail, Globe, MapPin, Users, ExternalLink, Search } from 'lucide-react';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
 
 export default function Article() {
   const { catKey, subKey, articleKey } = useParams<{ catKey: string; subKey: string; articleKey: string }>();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   // Scroll to top on mount or article change
   useEffect(() => {
@@ -176,8 +177,34 @@ export default function Article() {
           </p>
         </div>
 
+        <div className="directory-search-container">
+          <div className="directory-search-wrapper">
+            <Search className="search-icon" size={20} />
+            <input 
+              type="text" 
+              placeholder="Search associations, markets, or keywords..." 
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="directory-search-input"
+            />
+          </div>
+          {searchTerm && (
+            <div className="search-results-meta">
+              Found {d.items.filter(item => 
+                item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+                item.description.toLowerCase().includes(searchTerm.toLowerCase())
+              ).length} results for "{searchTerm}"
+            </div>
+          )}
+        </div>
+
         <div className="directory-list">
-          {d.items.map((item, i) => (
+          {d.items
+            .filter(item => 
+              item.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
+              item.description.toLowerCase().includes(searchTerm.toLowerCase())
+            )
+            .map((item, i) => (
             <div key={i} className="directory-item-card">
               <div className="directory-item-header">
                 <div className="directory-item-image">
