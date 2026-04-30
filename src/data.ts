@@ -58,12 +58,31 @@ export type DirectoryArticle = {
   }[];
 };
 
+export type ComparisonArticle = {
+  title: string;
+  type: "comparison";
+  readTime: string;
+  views: string;
+  about: string;
+  columns: string[];
+  rows: {
+    feature: string;
+    values: string[];
+  }[];
+  recommendations: {
+    title: string;
+    items: string[];
+  }[];
+  faq: { question: string; answer: string }[];
+};
+
 export type Tier4Article = 
   | { title: string; type: "content" } 
   | ServiceArticle
   | GuidanceArticle
   | ListingArticle
-  | DirectoryArticle;
+  | DirectoryArticle
+  | ComparisonArticle;
 
 export type Tier3Category = {
   title: string;
@@ -602,7 +621,44 @@ export const iaData: IAData = {
         "difference-loans-grants": {
           title: "What is the difference between loans and grants?",
           children: {
-            "funding-differences": { title: "Guidance on funding types", type: "content" },
+            "funding-differences": { 
+              title: "Loans vs Grants: Which one do you need?", 
+              type: "comparison",
+              readTime: "3 min read",
+              views: "1.5k views",
+              about: "Every business needs money to grow. In Niger State, the government and banks offer two main types of support: Loans and Grants. Knowing the difference helps you pick the right one so you don't get into debt you can't handle.",
+              columns: ["Feature", "Loan (Money you borrow)", "Grant (Money you keep)"],
+              rows: [
+                { feature: "Pay it back?", values: ["Yes, every month", "No, it is yours to keep"] },
+                { feature: "Cost", values: ["You pay interest (extra)", "It is 100% free"] },
+                { feature: "How fast?", values: ["Usually fast (1-2 weeks)", "Very slow (months)"] },
+                { feature: "Competition", values: ["Based on your credit", "Very hard to get"] },
+                { feature: "Risk", values: ["High (you end up in debt)", "Low (no debt at all)"] }
+              ],
+              recommendations: [
+                {
+                  title: "Pick a Loan if:",
+                  items: [
+                    "You need money right now to buy stock or tools.",
+                    "Your business is already making money and can pay it back.",
+                    "You want to be in total control of how you spend the money."
+                  ]
+                },
+                {
+                  title: "Pick a Grant if:",
+                  items: [
+                    "You are starting a new idea that might be risky.",
+                    "You have time to wait for a long application.",
+                    "Your business helps the community (like hiring young people or women)."
+                  ]
+                }
+              ],
+              faq: [
+                { question: "Do I need to pay to apply for a grant?", answer: "No. Official government grants are always free. If someone asks for money to 'help' you get a grant, it is a scam." },
+                { question: "Can I get a loan without a bank account?", answer: "Most times, no. You need a business bank account so the bank knows where to send the money." },
+                { question: "What if I spend grant money on my house?", answer: "This is not allowed. If the government finds out, they might ask for the money back or stop you from getting help again." }
+              ]
+            },
           },
         },
       },

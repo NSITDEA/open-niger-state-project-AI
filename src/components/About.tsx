@@ -38,7 +38,7 @@ export default function About() {
             For general inquiries or support regarding the portal, please contact us:
           </p>
           <p>
-            <strong>Email:</strong> openniger@nigerstate.gov.ng<br />
+            <strong>Email:</strong> <a href="mailto:openniger@nigerstate.gov.ng">openniger@nigerstate.gov.ng</a><br />
           </p>
         </section>
         

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { iaData, ServiceArticle, GuidanceArticle, ListingArticle, DirectoryArticle } from '../data';
+import { iaData, ServiceArticle, GuidanceArticle, ListingArticle, DirectoryArticle, ComparisonArticle } from '../data';
 import { Clock, Eye, CheckCircle2, ChevronDown, ArrowRight, AlertTriangle, Building2, Phone, Mail, Globe, MapPin, Users, ExternalLink, Search } from 'lucide-react';
 import { Badge } from './ui/Badge';
 import { Button } from './ui/Button';
@@ -281,7 +281,101 @@ export default function Article() {
     );
   }
 
-  // Render Service Layout
+  // Render Comparison Layout
+  if (article.type === 'comparison') {
+    const c = article as ComparisonArticle;
+    return (
+      <div className="service-layout">
+        <div className="service-hero">
+          <div className="container">
+            <h1>{c.title}</h1>
+            <div className="service-meta">
+              <div className="service-meta-item">
+                <Clock size={20} />
+                <span>{c.readTime}</span>
+              </div>
+              <div className="service-meta-item">
+                <Eye size={20} />
+                <span>{c.views}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="service-content-wrapper">
+          <div className="container">
+            <div className="service-card">
+              <h2 className="section-accent-title">About this guide</h2>
+              <p className="service-description">{c.about}</p>
+
+              <div className="guidance-container" style={{ marginBottom: '48px' }}>
+                <table className="guidance-table">
+                  <thead>
+                    <tr>
+                      {c.columns.map((col, i) => (
+                        <th key={i}>{col}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {c.rows.map((row, i) => (
+                      <tr key={i}>
+                        <td style={{ fontWeight: '700' }}>{row.feature}</td>
+                        {row.values.map((val, vi) => (
+                          <td key={vi}>{val}</td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+
+              <div className="recommendations-section" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '24px', marginBottom: '48px' }}>
+                {c.recommendations.map((rec, i) => (
+                  <div key={i} className="requirements-box" style={{ marginBottom: 0 }}>
+                    <h3>{rec.title}</h3>
+                    <div className="requirement-list">
+                      {rec.items.map((item, ii) => (
+                        <div key={ii} className="requirement-item">
+                          <CheckCircle2 size={24} className="benefit-icon" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="faq-section">
+                <h3>People also ask</h3>
+                <div className="faq-list">
+                  {c.faq.map((item, i) => (
+                    <div key={i} className={`faq-item ${openFaq === i ? 'open' : ''}`}>
+                      <button 
+                        className="faq-question" 
+                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                      >
+                        {item.question}
+                        <ChevronDown size={24} className="faq-icon" />
+                      </button>
+                      {openFaq === i && (
+                        <div className="faq-answer">
+                          {item.answer}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {renderRelated()}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (article.type === 'service') {
     const s = article as ServiceArticle;
     return (
